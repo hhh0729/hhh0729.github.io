@@ -23,28 +23,32 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta name="description" content="FloodFill 算法求解连通块大小（面积）例题： AcWing1113  BFS  1TBD  DFS  12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include&lt;iostream&gt;#include&lt;cstring&gt;#include&lt;que">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFS&#x2F;DFS 入门">
+<meta property="og:url" content="http://example.com/2021/01/24/BFS%20DFS%20acwing1113/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="FloodFill 算法求解连通块大小（面积）例题： AcWing1113  BFS  1TBD  DFS  12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include&lt;iostream&gt;#include&lt;cstring&gt;#include&lt;que">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-24T11:16:43.167Z">
+<meta property="article:modified_time" content="2021-01-24T11:24:24.048Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/01/24/BFS%20DFS%20acwing1113/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
-<title>Hexo</title>
+<title>BFS/DFS 入门 | Hexo</title>
   
 
 
@@ -130,7 +134,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -143,6 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FloodFill-%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E8%BF%9E%E9%80%9A%E5%9D%97%E5%A4%A7%E5%B0%8F%EF%BC%88%E9%9D%A2%E7%A7%AF%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">FloodFill 算法求解连通块大小（面积）</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -184,161 +189,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/24/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/24/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-01-24 19:16:43" itemprop="dateCreated datePublished" datetime="2021-01-24T19:16:43+08:00">2021-01-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-23 23:17:26" itemprop="dateModified" datetime="2021-01-23T23:17:26+08:00">2021-01-23</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h1><h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>n进制数a转换为m进制数b的方法：先将a转换为十进制数x，再将x转化为m进制数b</p>
-<h2 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h2><ol>
-<li><h2 id="例题：-AcWing1346"><a href="#例题：-AcWing1346" class="headerlink" title="例题： AcWing1346"></a>例题： <a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1348/">AcWing1346</a></h2></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/24/%E4%BA%8C%E5%88%86%20acwing680%201227/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/24/%E4%BA%8C%E5%88%86%20acwing680%201227/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-01-24 19:16:43" itemprop="dateCreated datePublished" datetime="2021-01-24T19:16:43+08:00">2021-01-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-23 11:24:05" itemprop="dateModified" datetime="2021-01-23T11:24:05+08:00">2021-01-23</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.acwing.com/solution/content/8235/">https://www.acwing.com/solution/content/8235/</a><br><a target="_blank" rel="noopener" href="https://www.acwing.com/blog/content/31/">https://www.acwing.com/blog/content/31/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/24/BFS%20DFS%20acwing1113/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -351,9 +212,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/24/BFS%20DFS%20acwing1113/" class="post-title-link" itemprop="url">BFS/DFS 入门</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          BFS/DFS 入门
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -377,7 +238,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="FloodFill-算法求解连通块大小（面积）"><a href="#FloodFill-算法求解连通块大小（面积）" class="headerlink" title="FloodFill 算法求解连通块大小（面积）"></a>FloodFill 算法求解连通块大小（面积）</h2><p>例题： <a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/1115/">AcWing1113</a></p>
+        <h2 id="FloodFill-算法求解连通块大小（面积）"><a href="#FloodFill-算法求解连通块大小（面积）" class="headerlink" title="FloodFill 算法求解连通块大小（面积）"></a>FloodFill 算法求解连通块大小（面积）</h2><p>例题： <a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/1115/">AcWing1113</a></p>
 <ol>
 <li>BFS</li>
 </ol>
@@ -387,7 +248,6 @@
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, vis[<span class="number">50</span>][<span class="number">50</span>], x, y;</span><br><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">int</span> ans;</span><br><span class="line"><span class="keyword">int</span> dir[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    vis[x][y] = <span class="number">1</span>;</span><br><span class="line">    ans++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> nx = x + dir[i][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> ny = y + dir[i][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(vis[nx][ny] == <span class="number">0</span> &amp;&amp; <span class="number">0</span> &lt;= nx &amp;&amp; nx &lt; n &amp;&amp; <span class="number">0</span> &lt;= ny &amp;&amp; ny &lt; m)&#123;</span><br><span class="line">            bfs(nx, ny);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;m&gt;&gt;n;</span><br><span class="line">    <span class="keyword">while</span>(n&amp;&amp;m)&#123;</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)&#123;</span><br><span class="line">                <span class="built_in">cin</span>&gt;&gt;c;</span><br><span class="line">                <span class="keyword">if</span>(c == <span class="string">&#x27;@&#x27;</span>)&#123;</span><br><span class="line">                    x = i;</span><br><span class="line">                    y = j;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(c == <span class="string">&#x27;#&#x27;</span>)&#123;</span><br><span class="line">                    vis[i][j] = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        bfs(x, y);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;m&gt;&gt;n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
@@ -395,81 +255,25 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/24/%E6%90%9C%E7%B4%A2%EF%BC%8C%E7%BB%84%E5%90%88%E6%95%B0AcWing%201432.%20%E6%A3%8B%E7%9B%98%E6%8C%91%E6%88%98/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/01/24/%E4%BA%8C%E5%88%86%20acwing680%201227/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/24/%E6%90%9C%E7%B4%A2%EF%BC%8C%E7%BB%84%E5%90%88%E6%95%B0AcWing%201432.%20%E6%A3%8B%E7%9B%98%E6%8C%91%E6%88%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/24/%E6%90%9C%E7%B4%A2%EF%BC%8C%E7%BB%84%E5%90%88%E6%95%B0AcWing%201432.%20%E6%A3%8B%E7%9B%98%E6%8C%91%E6%88%98/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-01-24 19:16:43" itemprop="dateCreated datePublished" datetime="2021-01-24T19:16:43+08:00">2021-01-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-23 22:55:25" itemprop="dateModified" datetime="2021-01-23T22:55:25+08:00">2021-01-23</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
