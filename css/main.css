@@ -182,7 +182,7 @@ body {
   background: var(--body-bg-color);
   color: var(--text-color);
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 1em;
+  font-size: 0.875em;
   line-height: 2;
   min-height: 100%;
   position: relative;
@@ -1198,7 +1198,7 @@ pre code {
 }
 .site-title {
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 1.375em;
+  font-size: 1.5em;
   font-weight: normal;
   margin: 0;
 }
@@ -2521,7 +2521,7 @@ hr {
   display: block;
   height: 2px;
   margin: 0 auto;
-  width: 75%;
+  width: 100%;
 }
 @media (max-width: 767px) {
   .logo-line {
@@ -2576,7 +2576,7 @@ hr {
   text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
 }
 .posts-expand.index .post-header {
-  text-align: left;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .posts-expand.index .post-header {
@@ -2587,7 +2587,7 @@ hr {
   margin-top: 5px;
 }
 .posts-expand.index .post-meta {
-  justify-content: flex-start;
+  justify-content: center;
 }
 @media (max-width: 767px) {
   .posts-expand.index .post-meta {
@@ -2598,7 +2598,7 @@ hr {
   display: none;
 }
 .posts-expand .post-block:not(:first-child) {
-  margin-top: 120px;
+  margin-top: 80px;
 }
 .posts-expand .post-header {
   margin-bottom: 20px;
@@ -2631,6 +2631,13 @@ hr {
 .post-button .btn:hover {
   border-bottom-color: var(--btn-default-hover-border-color);
 }
+.posts-expand .post-block {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 25px;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  -moz-box-shadow: 0 0 5px #ccc;
+}
 .main-inner {
   margin: 0 auto;
   width: 700px;
@@ -2662,7 +2669,7 @@ hr {
   padding-bottom: 80px;
 }
 .post-block:first-of-type {
-  padding-top: 80px;
+  padding-top: 35px;
 }
 @media (max-width: 767px) {
   .post-block:first-of-type {
@@ -2709,7 +2716,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #bb4e8e;
+  background: #ffc;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
